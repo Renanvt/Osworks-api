@@ -1,16 +1,20 @@
 package com.algaworks.osworks.api.exceptionhandler;
 
+import java.io.ObjectInputStream.GetField;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import com.sun.jdi.Field;
 
 @ControllerAdvice //È um componente do spring, porém com tratamento de exceptions geral
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
@@ -22,7 +26,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		for(ObjectError error: ex.getBindingResult().getAllErrors()){ 
 			//Pega todos os erros de BindingResult
 			//error.getDefaultMessage() //Mensagem de error
-			String nome = error.getObjectName();
+			String nome = ((FieldError) error).getField();
 			String mensagem = error.getDefaultMessage();
 			
 			campos.add(new Problema.Campo(nome, mensagem));
