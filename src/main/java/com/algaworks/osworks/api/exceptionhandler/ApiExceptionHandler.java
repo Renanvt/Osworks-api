@@ -4,6 +4,10 @@ import java.io.ObjectInputStream.GetField;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContext;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +22,8 @@ import com.sun.jdi.Field;
 
 @ControllerAdvice //È um componente do spring, porém com tratamento de exceptions geral
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
+	@Autowired  //Atribuir uma instancia na variavel messageSource
+	private MessageSource messageSource; //Resolver mensagens do messages.properties
 	
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -27,7 +33,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 			//Pega todos os erros de BindingResult
 			//error.getDefaultMessage() //Mensagem de error
 			String nome = ((FieldError) error).getField();
-			String mensagem = error.getDefaultMessage();
+			String mensagem = messageSource.getMessage(error, LocaleContextHolder.getLocale());
 			
 			campos.add(new Problema.Campo(nome, mensagem));
 		}
