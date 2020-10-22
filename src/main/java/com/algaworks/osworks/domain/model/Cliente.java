@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Cliente {
@@ -12,9 +15,19 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//Usa a estratégia nativa do banco de dados, no caso do mysql é o Auto_increment
 	private Long id;
 	
+	
+	@NotBlank //Não deixa o nome ser nulo, com espaços
+	@Size(max = 60)
 	private String nome;
+	
+	@NotBlank
+	
+	@Email //Validar o formato do email (@, .com, etc)
+	@Size(max = 255)
 	private String email;
 	
+	@NotBlank
+	@Size(max = 20) //Tamanho máximo de 20 caracteres
 	@Column(name="fone")
 	private String telefone;
 	
