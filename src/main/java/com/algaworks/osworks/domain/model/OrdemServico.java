@@ -13,7 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 
+import com.algaworks.osworks.domain.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -29,6 +32,7 @@ public class OrdemServico {
 	@ManyToOne 
 	@NotNull
 	@Valid //Configurando o cascateamento da validação, validando as propriedades de cliente
+	@ConvertGroup(from = Default.class, to = ValidationGroups.ClientId.class)
 	private Cliente cliente;
 	
 	@NotBlank
