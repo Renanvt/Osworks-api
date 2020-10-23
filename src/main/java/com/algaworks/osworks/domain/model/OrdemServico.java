@@ -24,7 +24,7 @@ public class OrdemServico {
 	private Cliente cliente;
 	
 	private String descricao;
-	private BigDecimal peso;
+	private BigDecimal preco;
 	
 	@Enumerated(EnumType.STRING) //Na coluna de status, armazena a string ABERTA, FINALIZADA, etc, e nao numero
 	private StatusOrdemServico status;
@@ -48,11 +48,11 @@ public class OrdemServico {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public BigDecimal getPeso() {
-		return peso;
+	public BigDecimal getPreco() {
+		return preco;
 	}
-	public void setPeso(BigDecimal peso) {
-		this.peso = peso;
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 	public StatusOrdemServico getStatus() {
 		return status;
