@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 public class OrdemServico {
 	@Id
@@ -28,8 +31,13 @@ public class OrdemServico {
 	
 	@Enumerated(EnumType.STRING) //Na coluna de status, armazena a string ABERTA, FINALIZADA, etc, e nao numero
 	private StatusOrdemServico status;
+	
+	@JsonProperty(access = Access.READ_ONLY)
 	private LocalDateTime dataAbertura;
+	
+	@JsonProperty(access = Access.READ_ONLY)//somente leitura
 	private LocalDateTime dataFinalizacao;
+	
 	public long getId() {
 		return id;
 	}
