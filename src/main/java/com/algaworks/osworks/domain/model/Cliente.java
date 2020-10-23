@@ -7,10 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Cliente {
+	
+	@NotNull
 	@Id //Define a chave primária
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//Usa a estratégia nativa do banco de dados, no caso do mysql é o Auto_increment
 	private Long id;

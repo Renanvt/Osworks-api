@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -27,6 +28,7 @@ public class OrdemServico {
 	//@JoinColumn(name = "cliente_id")
 	@ManyToOne 
 	@NotNull
+	@Valid //Configurando o cascateamento da validação, validando as propriedades de cliente
 	private Cliente cliente;
 	
 	@NotBlank
