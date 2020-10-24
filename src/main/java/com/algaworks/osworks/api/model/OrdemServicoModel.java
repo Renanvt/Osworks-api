@@ -8,8 +8,15 @@ import com.algaworks.osworks.domain.model.StatusOrdemServico;
 //Representation Model
 public class OrdemServicoModel {
 	private Long id;
-	private String nomeCliente;
+	
+	private ClienteResumoModel cliente;
 	private String descricao;
+	public ClienteResumoModel getCliente() {
+		return cliente;
+	}
+	public void setCliente(ClienteResumoModel cliente) {
+		this.cliente = cliente;
+	}
 	private BigDecimal preco;
 	private StatusOrdemServico status;
 	private OffsetDateTime dataAbertura;
@@ -20,12 +27,8 @@ public class OrdemServicoModel {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNomeCliente() {
-		return nomeCliente;
-	}
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
-	}
+
+	
 	public String getDescricao() {
 		return descricao;
 	}
