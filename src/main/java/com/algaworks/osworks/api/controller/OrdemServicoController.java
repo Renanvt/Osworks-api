@@ -48,7 +48,7 @@ public class OrdemServicoController {
 	public ResponseEntity<OrdemServicoModel> buscar(@PathVariable Long ordemServicoId){
 		Optional<OrdemServico> ordemServico = ordemServicoRepository.findById(ordemServicoId);
 		if(ordemServico.isPresent()) { //Se não é nulo
-			OrdemServicoModel ordemServicoModel = modelMapper.map(ordemServico, OrdemServicoModel.class);
+			OrdemServicoModel ordemServicoModel = modelMapper.map(ordemServico.get(), OrdemServicoModel.class);
 			return ResponseEntity.ok(ordemServicoModel);
 		}
 		
