@@ -10,12 +10,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.algaworks.osworks.domain.ValidationGroups;
 
 @Entity
 public class Cliente {
 	
-	@NotNull(groups = ValidationGroups.ClientId.class)
+
 	@Id //Define a chave primária
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//Usa a estratégia nativa do banco de dados, no caso do mysql é o Auto_increment
 	private Long id;

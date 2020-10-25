@@ -1,5 +1,6 @@
 package com.algaworks.osworks.domain.model;
 
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
@@ -17,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 
-import com.algaworks.osworks.domain.ValidationGroups;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -31,24 +32,17 @@ public class OrdemServico {
 	//de muitos para um
 	//@JoinColumn(name = "cliente_id")
 	@ManyToOne 
-	@NotNull
-	@Valid //Configurando o cascateamento da validação, validando as propriedades de cliente
-	@ConvertGroup(from = Default.class, to = ValidationGroups.ClientId.class)
 	private Cliente cliente;
 	
-	@NotBlank
 	private String descricao;
 	
-	@NotNull
 	private BigDecimal preco;
 	
-	@Enumerated(EnumType.STRING) //Na coluna de status, armazena a string ABERTA, FINALIZADA, etc, e nao numero
+	@Enumerated(EnumType.STRING)
 	private StatusOrdemServico status;
 	
-	@JsonProperty(access = Access.READ_ONLY)
-	private OffsetDateTime dataAbertura;
 	
-	@JsonProperty(access = Access.READ_ONLY)//somente leitura
+	private OffsetDateTime dataAbertura;
 	private OffsetDateTime dataFinalizacao;
 	
 	public long getId() {
