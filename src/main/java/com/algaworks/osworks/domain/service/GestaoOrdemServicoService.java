@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.algaworks.osworks.api.model.Comentario;
+import com.algaworks.osworks.domain.exception.EntidadeNaoEncontradaException;
 import com.algaworks.osworks.domain.exception.NegocioException;
 import com.algaworks.osworks.domain.model.Cliente;
 import com.algaworks.osworks.domain.model.OrdemServico;
@@ -28,7 +29,7 @@ public class GestaoOrdemServicoService {
 	
 	public OrdemServico criar(OrdemServico ordemServico) {
 		Cliente cliente = clienteRepository.findById(ordemServico.getCliente().getId())
-				.orElseThrow(() -> new NegocioException("Cliente não encontrado")); //orElseThrow -> Extrai o dado optional e atribui ao cliente,porém se dentro do optional tiver nulo, lança a exceção especificada
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Cliente não encontrado")); //orElseThrow -> Extrai o dado optional e atribui ao cliente,porém se dentro do optional tiver nulo, lança a exceção especificada
 		
 		ordemServico.setCliente(cliente);
 		ordemServico.setStatus(StatusOrdemServico.ABERTA);
