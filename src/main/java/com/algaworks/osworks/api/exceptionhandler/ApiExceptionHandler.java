@@ -28,7 +28,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 	private MessageSource messageSource; //Resolver mensagens do messages.properties
 	
 	@ExceptionHandler(EntidadeNaoEncontradaException.class) //Caso uma determina exceção for lançada, caia nesse método
-	public ResponseEntity<Object> handleEntidadeNaoEncontradaException(NegocioException ex, WebRequest request) {
+	public ResponseEntity<Object> handleEntidadeNaoEncontrada(NegocioException ex, WebRequest request) {
 		var status = HttpStatus.NOT_FOUND;
 		
 		var problema = new Problema();
